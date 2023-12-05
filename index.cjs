@@ -3,13 +3,27 @@ const app = express();
 // const router = express.Router();
 const PORT = 1337;
 
-app.get('/', (req, res) => {
-	res.send('<h1>Hello World</h1>');
+const {
+	getAllRobots,
+} = require('./db/robots.cjs');
+
+
+app.get('/', async(req, res) => {
+	const robots = await getAllRobots();
+	res.send(robots);
 });
 
-app.get('/robot/:name', (req, res, next) => {
+app.get('/robot/:name', async(req, res, next) => {
 	try {
-		res.send('<p>Robot</p>');
+		res.send(`<p>Robot: ${req.params.name}</p>`);
+	} catch (error) {
+		next(error);
+	}
+});
+
+app.get('/task/:name', async(req, res, next) => {
+	try {
+		res.send(`<p>Task: ${req.params.name}</p>`);
 	} catch (error) {
 		next(error);
 	}

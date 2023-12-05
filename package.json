@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+	"seed:dev": "nodemon ./db/seed.cjs",
+	"seed": "node ./db/seed.cjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -12,6 +14,7 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
   }
 }
